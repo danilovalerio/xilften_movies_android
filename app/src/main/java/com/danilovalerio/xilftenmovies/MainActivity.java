@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view_main);
 
         List<Movie> movies = new ArrayList<>();
-        for(int i = 0; i< 30; i++){
+        for(int i = 0; i< 60; i++){
             Movie movie = new Movie();
-            movie.setCoverUrl("abc" + i);
+            movie.setCoverUrl("abc" + (i+1));
             movies.add(movie);
         }
 
