@@ -110,6 +110,7 @@ afhsahfusfhiashf esafdfa dfa fs fasd fsd f sadf  fd sfdsfsdfsd sahksfhjsfahjksdh
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/movie_item_similar"
         />
 
 
