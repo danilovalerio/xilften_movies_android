@@ -6,16 +6,25 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 public class MovieActivity extends AppCompatActivity {
+    private TextView txtTitle;
+    private TextView txtDesc;
+    private TextView txtCast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+
+        //Mock
+        txtTitle = findViewById(R.id.text_view_title);
+        txtDesc = findViewById(R.id.text_view_desc);
+        txtCast = findViewById(R.id.text_view_cast);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -34,6 +43,11 @@ public class MovieActivity extends AppCompatActivity {
 //            drawable.setDrawableByLayerId(R.id.cover_drawable, movieCover);
 //            ((ImageView) findViewById(R.id.image_view_cover)).setImageDrawable(drawable);
         }
+
+        txtTitle.setText("Batman Begins");
+        txtDesc.setText("O jovem Bruce Wayne cai em um poço e é atacado por morcegos. Bruce acorda de um pesadelo bal balb albalbalblalb allalb al blabl a");
+        txtCast.setText(getString(R.string.cast, "Fulano 1"+", Fulano 2"+", Fulano 3"+", Fulano 4"));
+
 
 
     }
