@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="@layout/category_item">
-
-<!--    <TextView-->
-<!--        android:id="@+id/text_view_url"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        android:text="Olá mundo!"-->
-<!--        android:background="@android:color/black"-->
-<!--        android:textColor="@android:color/white"-->
-<!--        />-->
     
     <ImageView
         android:id="@+id/image_view_cover"
@@ -33,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="w,3:4"
-        android:src="@drawable/movie"
+        android:src="@drawable/placeholder_bg"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
