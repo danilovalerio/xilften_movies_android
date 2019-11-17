@@ -13,6 +13,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="Olá mundo!"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
