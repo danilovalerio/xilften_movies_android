@@ -101,6 +101,17 @@ afhsahfusfhiashf esafdfa dfa fs fasd fsd f sadf  fd sfdsfsdfsd sahksfhjsfahjksdh
         app:layout_constraintTop_toBottomOf="@id/text_view_cast"
         android:textColor="@android:color/white"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_similar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/textView_similar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
 
 
 
