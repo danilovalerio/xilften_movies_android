@@ -52,4 +52,57 @@
         app:layout_constraintBottom_toBottomOf="@+id/image_view_cover"
         app:layout_constraintStart_toStartOf="parent"/>
 
+    <TextView
+        android:id="@+id/text_view_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="48dp"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:lineSpacingExtra="3sp"
+        android:textSize="14sp"
+        android:textColor="@color/colorGrayLighter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_view_cover"
+        tools:text="Superheroes amas to stop afhsahfusfhiashf esafdfa dfa fs fasd fsd f sadf  fd sfdsfsdfsd sahksfhjsfahjksdhfksahd
+afhsahfusfhiashf esafdfa dfa fs fasd fsd f sadf  fd sfdsfsdfsd sahksfhjsfahjksdh"/>
+
+    <TextView
+        android:id="@+id/text_view_cast"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="48dp"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:lineSpacingExtra="3sp"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_desc"
+        tools:text="Superheroes amas to stop afhsahfusfhiashf esafdfa dfa fs fasd fsd f sadf  fd sfdsfsdfsd sahksfhjsfahjksdhfksahd
+afhsahfusfhiashf esafdfa dfa fs fasd fsd f sadf  fd sfdsfsdfsd sahksfhjsfahjksdh"/>
+
+    <TextView
+        android:id="@+id/textView_similar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/similar"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:textAllCaps="true"
+        android:textSize="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_cast"
+        android:textColor="@android:color/white"/>
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
