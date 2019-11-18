@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.danilovalerio.xilftenmovies.model.Category;
 import com.danilovalerio.xilftenmovies.model.Movie;
 import com.danilovalerio.xilftenmovies.util.CategoryTask;
+import com.danilovalerio.xilftenmovies.util.ImageDownloaderTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements CategoryTask.Cate
         public void onBindViewHolder(@NonNull MovieHolder holder, int position) {
             Movie movie = movies.get(position);
 //            holder.imageViewCover.setImageResource(movie.getCoverUrl());
+            new ImageDownloaderTask(holder.imageViewCover).execute(movie.getCoverUrl());
         }
 
         @Override
