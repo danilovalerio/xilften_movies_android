@@ -31,17 +31,18 @@ public class MovieActivity extends AppCompatActivity implements MovieDetailTask.
     private TextView txtCast;
     private RecyclerView recyclerView;
     private MovieAdapter movieAdapter;
+    private ImageView imgCover;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
 
-        //Mock
         txtTitle = findViewById(R.id.text_view_title);
         txtDesc = findViewById(R.id.text_view_desc);
         txtCast = findViewById(R.id.text_view_cast);
         recyclerView = findViewById(R.id.recycler_view_similar);
+        imgCover = findViewById(R.id.image_view_cover);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -93,6 +94,10 @@ public class MovieActivity extends AppCompatActivity implements MovieDetailTask.
         txtTitle.setText(movieDetail.getMovie().getTitle());
         txtDesc.setText(movieDetail.getMovie().getDesc());
         txtCast.setText(movieDetail.getMovie().getCast());
+
+        ImageDownloaderTask imageDownloaderTask = new ImageDownloaderTask(imgCover);
+        imageDownloaderTask.setShadowEnabled(true);
+        imageDownloaderTask.execute(movieDetail.getMovie().getCoverUrl());
 
         movieAdapter.setMovies(movieDetail.getMoviesSimilar());
         movieAdapter.notifyDataSetChanged();

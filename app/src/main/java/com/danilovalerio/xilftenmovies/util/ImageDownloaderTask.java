@@ -3,8 +3,15 @@ package com.danilovalerio.xilftenmovies.util;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
 import android.widget.ImageView;
+
+import androidx.core.content.ContextCompat;
+
+import com.danilovalerio.xilftenmovies.R;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,9 +25,14 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class ImageDownloaderTask extends AsyncTask<String, Void, Bitmap> {
     private final WeakReference<ImageView> imageViewWeakReference;
+    private boolean shadowEnabled;
 
     public ImageDownloaderTask(ImageView imageView){
         this.imageViewWeakReference = new WeakReference<>(imageView);
+    }
+
+    public void setShadowEnabled(boolean shadowEnabled) {
+        this.shadowEnabled = shadowEnabled;
     }
 
     @Override
@@ -66,6 +78,19 @@ public class ImageDownloaderTask extends AsyncTask<String, Void, Bitmap> {
 
         ImageView imageView = imageViewWeakReference.get();
         if(imageView != null && bitmap != null){
+            if(shadowEnabled){
+                LayerDrawable drawable = (LayerDrawable) ContextCompat.getDrawable(imageView.getContext(),
+                        R.drawable.shadows);
+                if(drawable != null){
+                    BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
+                    drawable.setDrawableByLayerId(R.id.cover_drawable, bitmapDrawable);
+                    imageView.setImageDrawable(drawable);
+                }
+
+            } else {
+
+
+
             //escalonar as imagens do servidor para imageview
             if(bitmap.getWidth() < imageView.getWidth() || bitmap.getHeight() < imageView.getHeight()){
                 Matrix matrix = new Matrix();
@@ -84,6 +109,7 @@ public class ImageDownloaderTask extends AsyncTask<String, Void, Bitmap> {
             }
 
             imageView.setImageBitmap(bitmap);
+            }
         }
     }
 }
