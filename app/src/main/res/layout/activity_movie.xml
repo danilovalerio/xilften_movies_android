@@ -114,8 +114,6 @@ afhsahfusfhiashf esafdfa dfa fs fasd fsd f sadf  fd sfdsfsdfsd sahksfhjsfahjksdh
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView_similar"
             tools:listitem="@layout/movie_item_similar" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
