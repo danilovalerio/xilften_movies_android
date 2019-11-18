@@ -1,5 +1,7 @@
 package com.danilovalerio.xilftenmovies.util;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import com.danilovalerio.xilftenmovies.model.Category;
@@ -13,10 +15,19 @@ Espera 3 propriedades
 - resultado da operação
  */
 public class JsonDownloadTask extends AsyncTask<String, Void, List<Category>> {
+    private final Context context;
+    ProgressDialog dialog;
+
+    public JsonDownloadTask(Context context){
+        this.context = context;
+    }
+
     //main-thread (exibir uma progressbar)
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        dialog = ProgressDialog
+                .show(context, "Carregando", "",true);
     }
 
     // thread - background

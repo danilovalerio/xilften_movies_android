@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.danilovalerio.xilftenmovies.model.Category;
 import com.danilovalerio.xilftenmovies.model.Movie;
+import com.danilovalerio.xilftenmovies.util.JsonDownloadTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
         mainAdapter = new MainAdapter(categories);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(mainAdapter);
+
+        //testar execução da thread paralela
+        new JsonDownloadTask(this).execute();
+
+
 
     }
 
