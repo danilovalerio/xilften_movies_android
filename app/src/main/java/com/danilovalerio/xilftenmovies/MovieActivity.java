@@ -71,8 +71,7 @@ public class MovieActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
     }
 
-
-
+    
 
     //Coleções Opções semelhantes
     private static class MovieHolder extends RecyclerView.ViewHolder {
