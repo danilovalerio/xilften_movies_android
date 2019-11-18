@@ -72,6 +72,8 @@ public class MovieActivity extends AppCompatActivity {
     }
 
 
+
+
     //Coleções Opções semelhantes
     private static class MovieHolder extends RecyclerView.ViewHolder {
 
