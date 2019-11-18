@@ -16,6 +16,7 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,17 +31,21 @@ Espera 3 propriedades
 - resultado da operação
  */
 public class JsonDownloadTask extends AsyncTask<String, Void, List<Category>> {
-    private final Context context;
-    ProgressDialog dialog;
+    //WeakReference para evitar que tenha leaks, vazamentos de contexto, assim o android gerencia o contexto
+    private final WeakReference<Context> context;
+    private ProgressDialog dialog;
 
     public JsonDownloadTask(Context context){
-        this.context = context;
+        this.context = new WeakReference<>(context);
     }
 
     //main-thread (exibir uma progressbar)
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        Context context = this.context.get();
+
+        if(context != null)
         dialog = ProgressDialog
                 .show(context, "Carregando", "",true);
     }
