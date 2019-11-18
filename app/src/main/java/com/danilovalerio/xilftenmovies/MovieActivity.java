@@ -17,11 +17,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.danilovalerio.xilftenmovies.model.Movie;
+import com.danilovalerio.xilftenmovies.model.MovieDetail;
+import com.danilovalerio.xilftenmovies.util.MovieDetailTask;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieActivity extends AppCompatActivity {
+public class MovieActivity extends AppCompatActivity implements MovieDetailTask.MovieDetailLoader {
     private TextView txtTitle;
     private TextView txtDesc;
     private TextView txtCast;
@@ -71,7 +73,10 @@ public class MovieActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
     }
 
-    
+    @Override
+    public void onResult(MovieDetail movieDetail) {
+
+    }
 
     //Coleções Opções semelhantes
     private static class MovieHolder extends RecyclerView.ViewHolder {
