@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mainAdapter);
 
         //testar execução da thread paralela
-        new JsonDownloadTask(this).execute();
+        new JsonDownloadTask(this)
+                .execute("https://tiagoaguiar.co/api/netflix/home");
 
 
 
