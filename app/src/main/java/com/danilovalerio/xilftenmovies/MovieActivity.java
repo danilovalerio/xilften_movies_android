@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -85,7 +86,14 @@ public class MovieActivity extends AppCompatActivity implements MovieDetailTask.
             movieDetailTask.setMovideDetailLoader(this);
             movieDetailTask.execute("https://tiagoaguiar.co/api/netflix/1");
         }
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //se o volar for home mata activity atual
+        if(item.getItemId() == android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
