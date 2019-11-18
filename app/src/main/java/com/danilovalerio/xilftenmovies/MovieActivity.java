@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.danilovalerio.xilftenmovies.model.Movie;
 import com.danilovalerio.xilftenmovies.model.MovieDetail;
+import com.danilovalerio.xilftenmovies.util.ImageDownloaderTask;
 import com.danilovalerio.xilftenmovies.util.MovieDetailTask;
 
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class MovieActivity extends AppCompatActivity implements MovieDetailTask.
     private TextView txtDesc;
     private TextView txtCast;
     private RecyclerView recyclerView;
+    private MovieAdapter movieAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +61,7 @@ public class MovieActivity extends AppCompatActivity implements MovieDetailTask.
 //            ((ImageView) findViewById(R.id.image_view_cover)).setImageDrawable(drawable);
         }
 
-        txtTitle.setText("Batman Begins");
+        /*txtTitle.setText("Batman Begins");
         txtDesc.setText("O jovem Bruce Wayne cai em um poço e é atacado por morcegos. Bruce acorda de um pesadelo bal balb albalbalblalb allalb al blabl a");
         txtCast.setText(getString(R.string.cast, "Fulano 1"+", Fulano 2"+", Fulano 3"+", Fulano 4"));
 
@@ -66,24 +69,42 @@ public class MovieActivity extends AppCompatActivity implements MovieDetailTask.
         for (int i = 0; i < 60; i++) {
             Movie movie = new Movie();
             movies.add(movie);
-        }
+        }*/
 
-        recyclerView.setAdapter(new MovieAdapter(movies));
+        List<Movie> movies = new ArrayList<>();
+        movieAdapter = new MovieAdapter(movies);
+        recyclerView.setAdapter(movieAdapter);
         //o layout manager em formato de grid no tamanho de 3 colunas
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            int id = getIntent().getExtras().getInt("id");
+            MovieDetailTask movieDetailTask = new MovieDetailTask(this);
+            movieDetailTask.setMovideDetailLoader(this);
+            movieDetailTask.execute("https://tiagoaguiar.co/api/netflix/1");
+        }
+
     }
 
     @Override
     public void onResult(MovieDetail movieDetail) {
+//        Log.i("Teste", movieDetail.toString());
+        txtTitle.setText(movieDetail.getMovie().getTitle());
+        txtDesc.setText(movieDetail.getMovie().getDesc());
+        txtCast.setText(movieDetail.getMovie().getCast());
 
+        movieAdapter.setMovies(movieDetail.getMoviesSimilar());
+        movieAdapter.notifyDataSetChanged();
     }
+
 
     //Coleções Opções semelhantes
     private static class MovieHolder extends RecyclerView.ViewHolder {
 
         final ImageView imageViewCover;
 
-        public MovieHolder(@NonNull View itemView) {
+        MovieHolder(@NonNull View itemView) {
             super(itemView);
             imageViewCover = itemView.findViewById(R.id.image_view_cover);
         }
@@ -97,6 +118,11 @@ public class MovieActivity extends AppCompatActivity implements MovieDetailTask.
             this.movies = movies;
         }
 
+        void setMovies(List<Movie> movies){
+            this.movies.clear();
+            this.movies.addAll(movies);
+        }
+
         @NonNull
         @Override
         public MovieHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -107,6 +133,7 @@ public class MovieActivity extends AppCompatActivity implements MovieDetailTask.
         @Override
         public void onBindViewHolder(@NonNull MovieHolder holder, int position) {
             Movie movie = movies.get(position);
+            new ImageDownloaderTask(holder.imageViewCover).execute(movie.getCoverUrl());
 //            holder.imageViewCover.setImageResource(movie.getCoverUrl());
         }
 
