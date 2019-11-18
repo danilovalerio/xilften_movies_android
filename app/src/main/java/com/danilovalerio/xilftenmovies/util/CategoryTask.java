@@ -30,13 +30,18 @@ Espera 3 propriedades
 - espera progress se quiser
 - resultado da operação
  */
-public class JsonDownloadTask extends AsyncTask<String, Void, List<Category>> {
+public class CategoryTask extends AsyncTask<String, Void, List<Category>> {
     //WeakReference para evitar que tenha leaks, vazamentos de contexto, assim o android gerencia o contexto
     private final WeakReference<Context> context;
     private ProgressDialog dialog;
+    private CategoryLoader categoryLoader;
 
-    public JsonDownloadTask(Context context){
+    public CategoryTask(Context context){
         this.context = new WeakReference<>(context);
+    }
+
+    public void setCategoryLoader(CategoryLoader categoryLoader){
+        this.categoryLoader = categoryLoader;
     }
 
     //main-thread (exibir uma progressbar)
@@ -131,6 +136,11 @@ public class JsonDownloadTask extends AsyncTask<String, Void, List<Category>> {
     protected void onPostExecute(List<Category> categories) {
         super.onPostExecute(categories);
         dialog.dismiss();
+
+        //listener
+        if (categoryLoader != null){
+            categoryLoader.onResult(categories);
+        }
     }
 
     private String bytesToString(InputStream is) throws IOException {
@@ -143,5 +153,9 @@ public class JsonDownloadTask extends AsyncTask<String, Void, List<Category>> {
 
         return new String(baos.toByteArray());
 
+    }
+
+    public interface CategoryLoader {
+        void onResult(List<Category> categories);
     }
 }
